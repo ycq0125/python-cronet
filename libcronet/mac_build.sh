@@ -48,5 +48,5 @@ ninja -C out/Cronet cronet_package
 
 cp -r out/Cronet/cronet/ ${CURRENT_DIR}/cronet_build
 ls ${CURRENT_DIR}/cronet_build
-cd "${CURRENT_DIR}"
+cd ${CURRENT_DIR}
 rm -rf out

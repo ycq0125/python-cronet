@@ -12,7 +12,7 @@ export LDFLAGS="-L${CURRENT_DIR}/cronet_build"
 # https://github.com/pypa/wheel/issues/406
 export _PYTHON_HOST_PLATFORM="macosx-11.0-arm64"
 export ARCHFLAGS="-arch arm64"
-cp ${CURRENT_DIR}/cronet_build/libcronet*dylib /usr/local/lib
+cp ${CURRENT_DIR}/cronet_build/libcronet.${CHROMIUM_VERSION}.dylib /usr/local/lib
 
 function repair_wheel() {
   local python_version="$1"
@@ -25,7 +25,7 @@ function repair_wheel() {
   ls ${CURRENT_DIR}
   ls ${CURRENT_DIR}/cronet_build
   ls /usr/local/lib
-  delocate-wheel -w wheelhouse -v "dist/python_cronet-${LIBCRONET_VERSION}-cp${wheel_version}-cp${wheel_version}-macosx_11_0_arm64.whl"
+  delocate-wheel -w wheelhouse -v dist/python_cronet-${LIBCRONET_VERSION}-cp${wheel_version}-cp${wheel_version}-macosx_11_0_arm64.whl
 }
 
 # 将 matrix.python-version 传递到脚本中，并生成 wheel
