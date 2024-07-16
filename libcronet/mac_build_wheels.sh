@@ -12,6 +12,7 @@ export LDFLAGS="-L${CURRENT_DIR}/cronet_build"
 # https://github.com/pypa/wheel/issues/406
 export _PYTHON_HOST_PLATFORM="macosx-11.0-arm64"
 export ARCHFLAGS="-arch arm64"
+cp ${CURRENT_DIR}/cronet_build/libcronet*dylib /usr/local/lib
 
 function repair_wheel() {
   local python_version="$1"
