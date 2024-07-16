@@ -22,7 +22,8 @@ function repair_wheel() {
 
   arch -arm64 python -m pip install delocate build
   arch -arm64 python -m build
-  ls "${CURRENT_DIR}"
+  ls ${CURRENT_DIR}
+  ls /usr/local/lib
   delocate-wheel -w wheelhouse -v "dist/python_cronet-${LIBCRONET_VERSION}-cp${wheel_version}-cp${wheel_version}-macosx_11_0_arm64.whl"
 }
 
