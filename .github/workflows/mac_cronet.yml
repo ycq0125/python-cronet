@@ -48,7 +48,7 @@ jobs:
           architecture: arm64
 
       - name: Build wheels
-        run: ./libcronet/mac_build_wheels.sh ${{ matrix.python-version }}
+        run: sudo ./libcronet/mac_build_wheels.sh ${{ matrix.python-version }}
         working-directory: ./app
 
       - name: Upload artifact
