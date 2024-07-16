@@ -1,0 +1,58 @@
+name: Build Macos
+
+on: [ push ]
+
+env:
+  CHROMIUM_VERSION: 123.0.6312.58
+  LIBCRONET_VERSION: 0.1.1
+
+jobs:
+  build_wheels:
+    name: Build wheels for Macos
+    runs-on: macos-14
+    strategy:
+      matrix:
+        python-version: ["3.8", "3.9", "3.10", "3.11", "3.12"]
+        arch: [ arm64 ]
+    steps:
+      - name: Create directory
+        run: mkdir -p ./app
+
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          path: ./app
+
+      - name: Cache Cronet
+        id: cache-cronet
+        uses: actions/cache@v4
+        with:
+          path: cronet_build
+          key: ${{ runner.os }}-cronet
+
+      - name: Grant execute permissions to build scripts
+        run: |
+          chmod +x ./libcronet/mac_build.sh
+          chmod +x ./libcronet/mac_build_wheels.sh
+        working-directory: ./app
+
+      - name: Build Cronet
+        if: steps.cache-cronet.outputs.cache-hit != 'true'
+        run: ./libcronet/mac_build.sh
+        working-directory: ./app
+
+      - name: Setup Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: ${{ matrix.python-version }}
+          architecture: arm64
+
+      - name: Build wheels
+        run: ./libcronet/mac_build_wheels.sh ${{ matrix.python-version }}
+        working-directory: ./app
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: wheels
+          path: ./app/wheelhouse/*.whl
