@@ -15,7 +15,7 @@ cd out
 git clone --depth 1 https://chromium.googlesource.com/chromium/tools/depot_tools.git
 export PATH="${CURRENT_DIR}/out/depot_tools:$PATH"
 # 克隆 Chromium 源码仓库的指定分支
-git clone -b "${CHROMIUM_VERSION}" --depth=2 https://chromium.googlesource.com/chromium/src
+git clone -b ${CHROMIUM_VERSION} --depth=2 https://chromium.googlesource.com/chromium/src
 
 # 进入到源码目录，应用 patch
 cd src
@@ -46,7 +46,7 @@ gn gen out/Cronet/ --args='target_os="mac" is_debug=false is_component_build=fal
 
 ninja -C out/Cronet cronet_package
 
-cp -r out/Cronet/cronet/ "${CURRENT_DIR}/cronet_build"
-
+cp -r out/Cronet/cronet/ ${CURRENT_DIR}/cronet_build
+ls ${CURRENT_DIR}/cronet_build
 cd "${CURRENT_DIR}"
 rm -rf out
