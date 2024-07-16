@@ -17,7 +17,6 @@ export LDFLAGS="-L${CURRENT_DIR}/cronet_build"
 # https://github.com/pypa/wheel/issues/406
 export _PYTHON_HOST_PLATFORM="macosx-11.0-arm64"
 export ARCHFLAGS="-arch arm64"
-cp ${CURRENT_DIR}/cronet_build/libcronet.${CHROMIUM_VERSION}.dylib /usr/local/lib
 
 function repair_wheel() {
   local python_version="$1"
@@ -27,8 +26,10 @@ function repair_wheel() {
 
   arch -arm64 python -m pip install delocate build
   arch -arm64 python -m build
-  ls ${CURRENT_DIR}
+
   ls ${CURRENT_DIR}/cronet_build
+  cp ${CURRENT_DIR}/cronet_build/libcronet*dylib /usr/local/lib
+
   ls /usr/local/lib
   delocate-wheel -w wheelhouse -v dist/python_cronet-${LIBCRONET_VERSION}-cp${wheel_version}-cp${wheel_version}-macosx_11_0_arm64.whl
 }
