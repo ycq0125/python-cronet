@@ -39,6 +39,9 @@ jobs:
       - name: Build Cronet
         if: steps.cache-cronet.outputs.cache-hit != 'true'
         run: ./libcronet/mac_build.sh
+        env:
+          CHROMIUM_VERSION: ${{ env.CHROMIUM_VERSION }}
+          LIBCRONET_VERSION: ${{ env.LIBCRONET_VERSION }}
         working-directory: ./app
 
       - name: Setup Python
@@ -49,6 +52,9 @@ jobs:
 
       - name: Build wheels
         run: sudo ./libcronet/mac_build_wheels.sh ${{ matrix.python-version }}
+        env:
+          CHROMIUM_VERSION: ${{ env.CHROMIUM_VERSION }}
+          LIBCRONET_VERSION: ${{ env.LIBCRONET_VERSION }}
         working-directory: ./app
 
       - name: Upload artifact

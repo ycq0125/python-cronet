@@ -1,5 +1,10 @@
 #!/bin/bash
 
+
+echo "Building with Chromium version: ${CHROMIUM_VERSION}"
+echo "Using libcronet version: ${LIBCRONET_VERSION}"
+
+
 # 获取当前工作目录的路径
 CURRENT_DIR="$(pwd)"
 
