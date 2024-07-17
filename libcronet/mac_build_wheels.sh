@@ -36,7 +36,7 @@ function repair_wheel() {
 
   ls ${CURRENT_DIR}/cronet_build
   echo "cp lib"
-  cp ${CURRENT_DIR}/cronet_build/libcronet*dylib /usr/local/lib/libcronet*dylib
+  cp ${CURRENT_DIR}/cronet_build/libcronet*dylib /usr/local/lib/
 
   ls /usr/local/lib
   delocate-wheel -w wheelhouse -v dist/python_cronet-${LIBCRONET_VERSION}-cp${wheel_version}-cp${wheel_version}-macosx_11_0_arm64.whl
