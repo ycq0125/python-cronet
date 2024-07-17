@@ -20,10 +20,10 @@ export ARCHFLAGS="-arch arm64"
 
 echo "ls /usr"
 ls ls /usr
-echo "ls /usr/local"
-ls /usr/local
-echo "ls /usr/local/lib"
-ls /usr/lib
+#echo "ls /usr/local"
+#ls /usr/local
+#echo "ls /usr/local/lib"
+#ls /usr/lib
 
 ## Fix directory structure
 #sudo mkdir -p /usr/local/include && \
