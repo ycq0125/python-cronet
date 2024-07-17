@@ -28,27 +28,20 @@ function repair_wheel() {
   local python_version="$1"
   local wheel_version="$2"
 
-  file $(which python)
+  file $(which python${python_version})
 
-  arch -arm64 python -m pip install delocate build
-  arch -arm64 python -m build
+  arch -arm64 python${python_version} -m pip install delocate build
+  arch -arm64 python${python_version} -m build
 
   cp -v ${CURRENT_DIR}/cronet_build/libcronet*dylib /usr/local/lib
 
   delocate-wheel -w wheelhouse -v dist/python_cronet-${LIBCRONET_VERSION}-cp${wheel_version}-cp${wheel_version}-macosx_11_0_arm64.whl
 }
 
-# 将 matrix.python-version 传递到脚本中，并生成 wheel
-PYTHON_VERSION=$1
 
-# 映射 Python 版本到 wheel 版本
-case $PYTHON_VERSION in
-  "3.8") WHEEL_VERSION="38" ;;
-  "3.9") WHEEL_VERSION="39" ;;
-  "3.10") WHEEL_VERSION="310" ;;
-  "3.11") WHEEL_VERSION="311" ;;
-  "3.12") WHEEL_VERSION="312" ;;
-  *) echo "Unsupported Python version: $PYTHON_VERSION" ; exit 1 ;;
-esac
 
-repair_wheel "${PYTHON_VERSION}" "${WHEEL_VERSION}"
+repair_wheel "3.8" "38"
+repair_wheel "3.9" "39"
+repair_wheel "3.10" "310"
+repair_wheel "3.11" "311"
+repair_wheel "3.12" "312"
