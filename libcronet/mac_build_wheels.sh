@@ -25,6 +25,14 @@ ls /usr/local
 echo "ls /usr/local/lib"
 ls /usr/lib
 
+## Fix directory structure
+#sudo mkdir -p /usr/local/include && \
+#    sudo chown -R $(whoami) /usr/local/include
+#sudo mkdir -p /usr/local/lib && \
+#    sudo chown -R $(whoami) /usr/local/lib
+#sudo mkdir -p /usr/local/share && \
+#    sudo chown -R $(whoami) /usr/local/share
+
 
 function repair_wheel() {
   local python_version="$1"
