@@ -13,7 +13,7 @@ set -e
 sudo mkdir -p /usr/local/lib && \
     sudo chown -R $(whoami) /usr/local/lib
 # copy libcronet
-#sudo cp -v ${CURRENT_DIR}/cronet_build/libcronet*dylib /usr/local/lib
+sudo cp -v ${CURRENT_DIR}/cronet_build/libcronet*dylib /usr/local/lib
 
 export CPPFLAGS="-I${CURRENT_DIR}/cronet_build/include"
 export LDFLAGS="-L${CURRENT_DIR}/cronet_build"
@@ -29,10 +29,10 @@ function repair_wheel() {
 
   file $(which python${python_version})
 
-#  arch -arm64 python${python_version} -m pip install delocate build
-#  arch -arm64 python${python_version} -m build
-#
-#  delocate-wheel -w wheelhouse -v dist/python_cronet-${LIBCRONET_VERSION}-cp${wheel_version}-cp${wheel_version}-macosx_11_0_arm64.whl
+  arch -arm64 python${python_version} -m pip install delocate build
+  arch -arm64 python${python_version} -m build
+
+  delocate-wheel -w wheelhouse -v dist/python_cronet-${LIBCRONET_VERSION}-cp${wheel_version}-cp${wheel_version}-macosx_11_0_arm64.whl
 }
 
 repair_wheel "3.8" "38"

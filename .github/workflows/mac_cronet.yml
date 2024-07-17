@@ -36,10 +36,10 @@ jobs:
           chmod +x ./libcronet/mac_build_wheels.sh
         working-directory: ./app
 
-#      - name: Build Cronet
-#        if: steps.cache-cronet.outputs.cache-hit != 'true'
-#        run: ./libcronet/mac_build.sh
-#        working-directory: ./app
+      - name: Build Cronet
+        if: steps.cache-cronet.outputs.cache-hit != 'true'
+        run: ./libcronet/mac_build.sh
+        working-directory: ./app
 
       - name: Setup Python
         uses: actions/setup-python@v4
