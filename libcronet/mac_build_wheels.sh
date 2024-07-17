@@ -13,7 +13,7 @@ set -e
 sudo mkdir -p /usr/local/lib && \
     sudo chown -R $(whoami) /usr/local/lib
 # copy libcronet
-sudo cp -v ${CURRENT_DIR}/cronet_build/libcronet*dylib /usr/local/lib
+#sudo cp -v ${CURRENT_DIR}/cronet_build/libcronet*dylib /usr/local/lib
 
 export CPPFLAGS="-I${CURRENT_DIR}/cronet_build/include"
 export LDFLAGS="-L${CURRENT_DIR}/cronet_build"
