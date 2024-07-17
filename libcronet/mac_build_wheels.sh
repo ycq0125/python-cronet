@@ -28,6 +28,7 @@ function repair_wheel() {
   arch -arm64 python -m build
 
   ls ${CURRENT_DIR}/cronet_build
+  echo "cp lib"
   cp ${CURRENT_DIR}/cronet_build/libcronet*dylib /usr/local/lib
 
   ls /usr/local/lib
