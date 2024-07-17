@@ -18,6 +18,13 @@ export LDFLAGS="-L${CURRENT_DIR}/cronet_build"
 export _PYTHON_HOST_PLATFORM="macosx-11.0-arm64"
 export ARCHFLAGS="-arch arm64"
 
+echo "ls /usr/local/lib"
+ls /usr/local/lib
+echo "ls /usr/local"
+ls /usr/local
+echo "ls /usr"
+ls ls /usr
+
 function repair_wheel() {
   local python_version="$1"
   local wheel_version="$2"
@@ -29,7 +36,7 @@ function repair_wheel() {
 
   ls ${CURRENT_DIR}/cronet_build
   echo "cp lib"
-  cp ${CURRENT_DIR}/cronet_build/libcronet*dylib /usr/local/lib
+  cp ${CURRENT_DIR}/cronet_build/libcronet*dylib /usr/local/lib/libcronet*dylib
 
   ls /usr/local/lib
   delocate-wheel -w wheelhouse -v dist/python_cronet-${LIBCRONET_VERSION}-cp${wheel_version}-cp${wheel_version}-macosx_11_0_arm64.whl
