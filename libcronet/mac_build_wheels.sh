@@ -18,10 +18,11 @@ export LDFLAGS="-L${CURRENT_DIR}/cronet_build"
 export _PYTHON_HOST_PLATFORM="macosx-11.0-arm64"
 export ARCHFLAGS="-arch arm64"
 
-echo "sudo ls ls /usr"
-sudo ls ls /usr
-#echo "ls /usr/local"
-#ls /usr/local
+ls /
+echo "ls /usr"
+ls /usr
+echo "ls /usr/local"
+ls /usr/local
 #echo "ls /usr/local/lib"
 #ls /usr/lib
 
